@@ -3,18 +3,18 @@ public class Main {
         System.out.println("Поехали!");
         TaskManager taskManager = new TaskManager();
         taskManager.addTask(new Task("Помыть посуду",
-                "в посудомойку не влезли сковородки, надо помыть ручками)", TaskStatus.NEW));
+                "в посудомойку не влезли сковородки, надо помыть ручками)", TaskStatus.NEW, taskManager));
         taskManager.addTask(new Task("Выкинуть мусор",
-                "тут все просто, соброал, выкинул))", TaskStatus.NEW));
-        taskManager.addEpic(new Epic("Сходить в магазин","в холодильнике пусто"));
+                "тут все просто, соброал, выкинул))", TaskStatus.NEW, taskManager));
+        taskManager.addEpic(new Epic("Сходить в магазин","в холодильнике пусто", taskManager));
         taskManager.addSubtask(new Subtask("Купить мясо",
-                "мясо тоже закончилось", TaskStatus.NEW,3));
+                "мясо тоже закончилось", TaskStatus.NEW,3, taskManager));
         taskManager.addSubtask(new Subtask("Купить молоко",
-                "молоко тоже закончилось", TaskStatus.DONE,3));
+                "молоко тоже закончилось", TaskStatus.DONE,3, taskManager));
         taskManager.addEpic(new Epic("Проверить почту",
-                "писем накопилось с пррошлой недели"));
+                "писем накопилось с пррошлой недели", taskManager));
         taskManager.addSubtask(new Subtask("Проверить сообщения от начальника",
-                "и отправить их в спам)", TaskStatus.NEW,6));
+                "и отправить их в спам)", TaskStatus.NEW,6, taskManager));
 
         for (Task task : taskManager.getAllTasks()) {
             System.out.println(task);
