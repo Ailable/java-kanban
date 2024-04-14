@@ -14,6 +14,7 @@ class InMemoryHistoryManagerTest {
         Task testTask1 = new Task("Помыть посуду",
                 "в посудомойку не влезли сковородки, надо помыть ручками)", TaskStatus.NEW, test);
         test.addTask(testTask1);
+
         Task testTask2 = new Task("Помыть посуду",
                 "в посудомойку не влезли сковородки, надо помыть ручками)", TaskStatus.NEW, test);
         test.addTask(testTask2);
@@ -29,9 +30,6 @@ class InMemoryHistoryManagerTest {
 
         test.getTaskById(1);
         historyListTest.add(testTask1);
-
-        test.getTaskById(2);
-        historyListTest.add(testTask2);
 
         assertEquals(historyListTest, historyTest.getHistory());
 
