@@ -1,17 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
 
 public class Epic extends Task {
-    List<Integer> subtasksList; // Список с ID подзадач для данного Эпика
+    List<Subtask> subtasksList; // Список с ID подзадач для данного Эпика
 
-    public Epic(String task, String description, TaskManager taskManager) {
-        super(task, description, TaskStatus.NEW, taskManager);
+    public Epic(String task, String description, TaskManager inMemoryTaskManager) {
+        super(task, description, TaskStatus.NEW, inMemoryTaskManager);
         this.subtasksList = new ArrayList<>();
     }
 
-    public List<Integer> getSubtasksList() {
+    public List<Subtask> getSubtasksList() {
         return subtasksList;
     }
 

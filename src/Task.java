@@ -1,17 +1,15 @@
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
-public class Task {
+public class Task  {
     String task;
     String description;
     TaskStatus status;
     int taskId;
-    public Task(String task, String description, TaskStatus status, TaskManager taskManager){
+    public Task(String task, String description, TaskStatus status, TaskManager inMemoryTaskManager){
         this.task = task;
         this.status = status;
         this.description = description;
-        this.taskId = taskManager.getId();
+        this.taskId = inMemoryTaskManager.getSubtask();
     }
     public Task( int id, String task, String description, TaskStatus status){
         this.task = task;

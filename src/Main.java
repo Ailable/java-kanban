@@ -1,43 +1,52 @@
 public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
-        TaskManager taskManager = new TaskManager();
-        taskManager.addTask(new Task("Помыть посуду",
-                "в посудомойку не влезли сковородки, надо помыть ручками)", TaskStatus.NEW, taskManager));
-        taskManager.addTask(new Task("Выкинуть мусор",
-                "тут все просто, соброал, выкинул))", TaskStatus.NEW, taskManager));
-        taskManager.addEpic(new Epic("Сходить в магазин","в холодильнике пусто", taskManager));
-        taskManager.addSubtask(new Subtask("Купить мясо",
-                "мясо тоже закончилось", TaskStatus.NEW,3, taskManager));
-        taskManager.addSubtask(new Subtask("Купить молоко",
-                "молоко тоже закончилось", TaskStatus.DONE,3, taskManager));
-        taskManager.addEpic(new Epic("Проверить почту",
-                "писем накопилось с пррошлой недели", taskManager));
-        taskManager.addSubtask(new Subtask("Проверить сообщения от начальника",
-                "и отправить их в спам)", TaskStatus.NEW,6, taskManager));
+        TaskManager inMemoryTaskManager = Managers.getDefault();
+        HistoryManager historyManager = Managers.getDefaultHistory();
 
-        for (Task task : taskManager.getAllTasks()) {
+        inMemoryTaskManager.addTask(new Task("Помыть посуду",
+                "в посудомойку не влезли сковородки, надо помыть ручками)", TaskStatus.NEW, inMemoryTaskManager));
+        inMemoryTaskManager.addTask(new Task("Выкинуть мусор",
+                "тут все просто, соброал, выкинул))", TaskStatus.NEW, inMemoryTaskManager));
+        inMemoryTaskManager.addEpic(new Epic("Сходить в магазин","в холодильнике пусто", inMemoryTaskManager));
+        inMemoryTaskManager.addSubtask(new Subtask("Купить мясо",
+                "мясо тоже закончилось", TaskStatus.NEW,3, inMemoryTaskManager));
+        inMemoryTaskManager.addSubtask(new Subtask("Купить молоко",
+                "молоко тоже закончилось", TaskStatus.DONE,3, inMemoryTaskManager));
+        inMemoryTaskManager.addEpic(new Epic("Проверить почту",
+                "писем накопилось с пррошлой недели", inMemoryTaskManager));
+        inMemoryTaskManager.addSubtask(new Subtask("Проверить сообщения от начальника",
+                "и отправить их в спам)", TaskStatus.NEW,6, inMemoryTaskManager));
+        for (Task task : inMemoryTaskManager.getAllTasks()) {
             System.out.println(task);
         }
 
-        for (Epic epic : taskManager.getAllEpics()) {
+
+        for (Epic epic : inMemoryTaskManager.getAllEpics()) {
             System.out.println(epic);
         }
 
-        for (Subtask subtask : taskManager.getAllSubtasks()) {
+        for (Subtask subtask : inMemoryTaskManager.getAllSubtasks()) {
             System.out.println(subtask);
         }
-
-        taskManager.updateSubtask(new Subtask(4,"Купить мясо",
+        inMemoryTaskManager.updateSubtask(new Subtask(4,"Купить мясо",
                 "мясо тоже закончилось", TaskStatus.DONE,3));
-        for (Subtask subtask : taskManager.getEpicSubtascs(3)) {
+        for (Subtask subtask : inMemoryTaskManager.getEpicSubtascs(3)) {
             System.out.println(subtask);
         }
-        System.out.println(taskManager.getEpicById(3));
+        System.out.println(inMemoryTaskManager.getEpicById(3));
 
-        taskManager.deleteTask(2);
-        taskManager.deleteEpic(3);
-        for (Subtask subtask : taskManager.getAllSubtasks()) {
+
+        for (Subtask subtask : inMemoryTaskManager.getAllSubtasks()) {
+            System.out.println(subtask);
+        }
+        System.out.println(inMemoryTaskManager.getTaskById(1));
+        System.out.println(inMemoryTaskManager.getEpicById(3));
+        System.out.println(inMemoryTaskManager.getEpicById(6));
+        for (Task history : historyManager.getHistory()) {
+            System.out.println(history);
+        }
+        for (Subtask subtask : inMemoryTaskManager.getEpicSubtascs(3)) {
             System.out.println(subtask);
         }
     }
