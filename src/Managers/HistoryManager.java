@@ -1,3 +1,7 @@
+package Managers;
+
+import Models.Task;
+
 import java.util.ArrayList;
 
 public interface HistoryManager {

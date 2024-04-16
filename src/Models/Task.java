@@ -1,18 +1,24 @@
+package Models;
+import Constants.TaskStatus;
+
 import java.util.Objects;
 
 public class Task  {
-    String task;
+    String title;
     String description;
-    TaskStatus status;
+    TaskStatus status = TaskStatus.NEW;
     int taskId;
-    public Task(String task, String description, TaskStatus status, TaskManager inMemoryTaskManager){
-        this.task = task;
+    public Task(String task, String description){
+        this.title = task;
+        this.description = description;
+    }
+    public Task(String task, String description, TaskStatus status){
+        this.title = task;
         this.status = status;
         this.description = description;
-        this.taskId = inMemoryTaskManager.getSubtask();
     }
     public Task( int id, String task, String description, TaskStatus status){
-        this.task = task;
+        this.title = task;
         this.status = status;
         this.description = description;
         this.taskId = id;
@@ -20,6 +26,10 @@ public class Task  {
 
     public int getTaskId() {
         return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
     public void setStatus(TaskStatus status) {
@@ -32,7 +42,7 @@ public class Task  {
 
     @Override
     public String toString() {
-        String result = "ID=" + taskId + ", TASK=" + task + ", DESCRIPTION=";
+        String result = "ID=" + taskId + ", TASK=" + title + ", DESCRIPTION=";
         if (description != ""){
             result = result + description + ", STATUS=" + status;
         } else {
@@ -46,11 +56,11 @@ public class Task  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task1 = (Task) o;
-        return taskId == task1.taskId && Objects.equals(task, task1.task) && Objects.equals(description, task1.description) && status == task1.status;
+        return taskId == task1.taskId && Objects.equals(title, task1.title) && Objects.equals(description, task1.description) && status == task1.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(task, description, status, taskId);
+        return Objects.hash(title, description, status, taskId);
     }
 }
